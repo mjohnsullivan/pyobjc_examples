@@ -1,0 +1,12 @@
+# Compiled source #
+################
+*.pyc
+
+# OS generated files #
+#################
+.DS_Store*
+Thumbs.db
+
+# Xcode projects and workspaces #
+###########################
+*.xcworkspace

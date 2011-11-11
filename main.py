@@ -14,6 +14,7 @@ However the '-A' option currently doesn't work on my system.
 """
 from PyObjCTools import AppHelper
 from Foundation import *
+from AppKit import NSStatusBar, NSStatusItem, NSVariableStatusItemLength
 
 
 class PyController(NSObject):
@@ -28,9 +29,18 @@ class PyController(NSObject):
     #button = objc.IBOutlet()
     #label = objc.IBOutlet()
     text_field = objc.IBOutlet()
+    status_menu = objc.IBOutlet()
+    
+    # The status menu
+    status_item = None
+
 
     def awakeFromNib(self):
-        pass
+        self.status_item = NSStatusBar.systemStatusBar().statusItemWithLength_(NSVariableStatusItemLength)
+        self.status_item.setMenu_(self.status_menu)
+        self.status_item.setTitle_("Core");
+        self.status_item.setHighlightMode_(objc.YES);
+
 
     @objc.IBAction
     def buttonClick_(self, sender):
