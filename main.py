@@ -19,11 +19,11 @@ from AppKit import NSStatusBar, NSStatusItem, NSVariableStatusItemLength
 
 class PyController(NSObject):
     """
-    Simple controller that hooks up the the NIV
+    Simple Python controller that hooks up to a MacOSX nib
     """
 
-    # Hook up the Interface Builder outlets for the UI
-    # elements (only the text field is needed for this example)
+    # Hook up the Interface Builder outlets for the UI elements
+    # (only the text field and status menu are needed for this example)
 
     #window = objc.IBOutlet()
     #button = objc.IBOutlet()
@@ -32,14 +32,24 @@ class PyController(NSObject):
     status_menu = objc.IBOutlet()
     
     # The status menu
-    status_item = None
+    status = None
+
+
+    def _setup_status_bar(self):
+        """
+        Set up the status bar in the Mac menu
+        """
+        self.status = NSStatusBar.systemStatusBar().statusItemWithLength_(NSVariableStatusItemLength)
+        self.status.setMenu_(self.status_menu)
+        self.status.setTitle_("Core")
+        self.status.setHighlightMode_(objc.YES)
 
 
     def awakeFromNib(self):
-        self.status_item = NSStatusBar.systemStatusBar().statusItemWithLength_(NSVariableStatusItemLength)
-        self.status_item.setMenu_(self.status_menu)
-        self.status_item.setTitle_("Core");
-        self.status_item.setHighlightMode_(objc.YES);
+        """
+        Set up the UI once the NIB is initialised
+        """
+        self._setup_status_bar()
 
 
     @objc.IBAction

@@ -9,4 +9,4 @@ Thumbs.db
 
 # Xcode projects and workspaces #
 ###########################
-*.xcworkspace
+# *.xcworkspace

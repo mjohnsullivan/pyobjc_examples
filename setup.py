@@ -13,7 +13,7 @@ plist = dict(
              NSMainNibFile=nib_name,
              CFBundleShortVersionString="1.0",
              NSHumanReadableCopyright="Released under the BSD license",
-             LSUIElement = True # Hide the app running in the dock
+             # LSUIElement = True # Hide the app running in the dock
              )
 
 setup(
